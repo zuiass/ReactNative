@@ -1,35 +1,43 @@
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
-export default function Produto() {
+export default function DetalhesProduto() {
     return (
-        <ScrollView>
-            <View className="flex-1 bg-white p-4">
-                {/* Imagem do produto */}
-                <Image
-                    source={{ uri: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg' }}
-                    className="w-full h-72 object-cover rounded-lg mb-4"
-                />
+        <View className="flex-1 bg-gray-50">
+            {/* Cabeçalho */}
+            <View className="bg-blue-600 p-4">
+                <Text className="text-white text-2xl font-bold">Detalhes do Produto</Text>
+            </View>
 
-                {/* Nome do produto */}
-                <Text className="text-3xl font-bold text-gray-900 mb-2">
-                    Produto Incrível
+            {/* ScrollView para conteúdo rolável */}
+            <ScrollView className="px-4 py-6">
+                <View className="items-center">
+                    <Image
+                        source={{ uri: 'https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg' }}
+                        className="w-40 h-52 rounded-lg mb-4"
+                    />
+                </View>
+                {/* Imagem do Produto */}
+
+                {/* Nome do Produto */}
+                <Text className="text-3xl font-bold text-gray-800 mb-2">
+                    Produto Excepcional
                 </Text>
 
-                {/* Descrição do produto */}
+                {/* Descrição do Produto */}
                 <Text className="text-base text-gray-600 mb-4">
-                    Este é um produto de alta qualidade, feito para durar e proporcionar a melhor experiência.
+                    Este produto foi criado com materiais de alta qualidade, visando sempre o conforto e a durabilidade. É perfeito para quem busca praticidade e estilo.
                 </Text>
 
                 {/* Preço */}
                 <Text className="text-2xl font-semibold text-green-500 mb-6">
-                    R$ 199,99
+                    R$ 299,99
                 </Text>
 
-                {/* Botão de adicionar ao carrinho */}
-                <TouchableOpacity className="bg-blue-500 text-white py-3 rounded-full">
-                    <Text className="text-center text-lg font-bold">Adicionar ao Carrinho</Text>
+                {/* Botão de Comprar */}
+                <TouchableOpacity className="bg-blue-500 py-3 rounded-full">
+                    <Text className="text-center text-white text-lg font-bold">Comprar Agora</Text>
                 </TouchableOpacity>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </View>
     );
 }
