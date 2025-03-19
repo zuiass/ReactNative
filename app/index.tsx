@@ -3,21 +3,58 @@ import { useState } from "react";
 
 export default function Index() {
     
-    const [contador, setContador] = useState(0);
-    const [nome, setNome] = useState("");
+    const [lista, setLista] = useState([
+
+    ]);
+
+    const [novaTarefa, setNovaTarefa] = useState("");
+
+    const addTarefa = () => {
+        if (novaTarefa.trim() === "") return;
+
+        const tarefaObjeto = {
+            id: lista.length + 1,
+            tarefa: novaTarefa
+        };
+
+        setLista([...lista, tarefaObjeto]);
+        setNovaTarefa("");
+    };
 
     return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text>{contador}</Text>
+        <View className="flex-1 bg-white">
+            <View className="flex-1 p-6 gap-3 justify-between">
+                <View className="flex-1 bg-gray-300 rounded-xl overflow-hidden">
+                    <View className="w-full shadow-md p-4 bg-none">
+                        <Text className="text-2xl opacity-50">Suas tarefas: {lista.length}</Text>
+                    </View>
 
-            <TouchableOpacity onPress={() => setContador(contador + 1)}>
-                <Text>Aumentar</Text>
-            </TouchableOpacity>
+                    <ScrollView className="flex-1 p-5" style={{paddingBottom: 50}}> 
+                        <View>
+                            {
+                            lista.map((item) => (
+                                <Text className="text-lg" key={item.id}>
+                                    •  {item.tarefa}
+                                </Text>
+                            ))
+                            }
+                        </View>
+                    </ScrollView>
+                </View>
 
-            <Image></Image>
+                <View className="flex h-12 flex-row justify-between gap-1">
+                    <TextInput
+                        className="rounded-full w-auto text-xl p-2 border"
+                        placeholder="Digite uma tarefa..."
+                        value={novaTarefa}
+                        onChangeText={setNovaTarefa}
+                    ></TextInput>
 
-            <Text>{nome}</Text>
-            <TextInput onChangeText={setNome}></TextInput>
+                    <TouchableOpacity onPress={addTarefa} className="bg-blue-500 p-2 rounded-full flex items-center justify-center" style={{width: 48, height: 48}}>
+                        <Text className="flex items-center justify-center text-white text-2xl">+</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
         </View>
     );
 }
