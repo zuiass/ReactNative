@@ -20,7 +20,7 @@ export default function Index() {
             </View>
 
             <View className="flex p-5 gap-3" style={{paddingTop: 0}}>
-                <TextInput className="p-3 rounded-full shadow-md" placeholder="Usuário" placeholderTextColor={"#9CA3AF"} style={{borderWidth: 0}} />
+                <TextInput className="p-3 rounded-full shadow-md focus:border-none" placeholder="Usuário" placeholderTextColor={"#9CA3AF"} />
                 <TextInput className="p-3 rounded-full shadow-md" placeholder="Senha" placeholderTextColor={"#9CA3AF"} />
                 
                 <View className="w-full flex items-end">
