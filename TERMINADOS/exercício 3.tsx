@@ -4,8 +4,6 @@ export default function Index() {
   return (
     <View className="flex-1">
 
-      {/* Barra superior (ocupa a largura total da tela) */}
-
       <View className="w-full h-20 bg-blue-600 p-5">
         <Text className="text-white text-2xl">Detalhes do Produto</Text>
       </View>
