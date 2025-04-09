@@ -8,14 +8,12 @@ export default function Cadastro() {
     const [senha, setSenha] = useState("");
 
     function entrarLogin() {
-        if (!nome || !senha) {
-            return;
-        }
-
         router.push({
-            pathname: "./home", params: { nome: nome, senha: senha }
+            pathname: "/",
+            params: { nome, senha }
         });
     }
+
 
     return (
         <View className="flex-1 gap-4">

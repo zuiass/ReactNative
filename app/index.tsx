@@ -1,25 +1,30 @@
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { Text, View, TouchableOpacity, TextInput } from "react-native";
-import { useState } from "react";
-import { useLocalSearchParams } from "expo-router";
+import { useState, useEffect } from "react";
 
-export default function Index() {
+export default function Login() {
 
+    const params = useLocalSearchParams();
+    
     const [nome, setNome] = useState("");
     const [senha, setSenha] = useState("");
 
-    function entrarCadastro() {
-        router.push("./cadastro");
-    }
+    const [cadastroNome, setCadastroNome] = useState("");
+    const [cadastroSenha, setCadastroSenha] = useState("");
+
+    useEffect(() => {
+        if (params.nome) setCadastroNome(String(params.nome));
+        if (params.senha) setCadastroSenha(String(params.senha));
+    }, [params]);
 
     function entrarHome() {
-        if (!nome || !senha) {
-            return;
+        if (nome === cadastroNome && senha === cadastroSenha) {
+            router.push({ pathname: "/home", params: { nome } });
         }
+    }
 
-        router.push({
-            pathname: "./home", params: { nome: nome }
-        });
+    function entrarCadastro() {
+        router.push("./cadastro");
     }
 
     return (
