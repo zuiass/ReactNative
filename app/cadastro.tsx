@@ -2,7 +2,7 @@ import { Link, router } from "expo-router";
 import {Text, View, TouchableOpacity, Image, ScrollView, ActivityIndicator, TextInput} from "react-native";
 import { useEffect, useState } from "react";
 
-export default function Index() {
+export default function Cadastro() {
 
     return (
         <View className="flex-1 gap-4">

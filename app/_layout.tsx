@@ -4,7 +4,7 @@ import './globals.css';
 export default function RootLayout() {
 
   return (
-    <Stack initialRouteName="login" screenOptions={{headerShown: false}}></Stack>
+    <Stack screenOptions={{headerShown: false}}></Stack>
   );
 
 }
