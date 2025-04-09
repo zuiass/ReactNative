@@ -9,15 +9,13 @@ export default function Cadastro() {
     const [senha, setSenha] = useState("");
 
     function entrarLogin() {
-        router.push("./");
-    }
-
-    function entrarHome() {
         if (!usuario || !nome || !senha) {
             return;
         }
 
-        router.push("./home");
+        router.push({
+            pathname: "./home", params: { usuario: usuario, nome: nome, senha: senha }
+        });
     }
 
     return (
@@ -60,7 +58,7 @@ export default function Cadastro() {
             </View>
 
             <View className="flex p-5 gap-4">
-                <TouchableOpacity onPress={entrarHome} className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-full p-3 flex items-center">
+                <TouchableOpacity onPress={entrarLogin} className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-full p-3 flex items-center">
                     <Text className="text-white">Cadastrar</Text>
                 </TouchableOpacity>
 
