@@ -4,17 +4,16 @@ import { useEffect, useState } from "react";
 
 export default function Cadastro() {
 
-    const [usuario, setUsuario] = useState("");
     const [nome, setNome] = useState("");
     const [senha, setSenha] = useState("");
 
     function entrarLogin() {
-        if (!usuario || !nome || !senha) {
+        if (!nome || !senha) {
             return;
         }
 
         router.push({
-            pathname: "./home", params: { usuario: usuario, nome: nome, senha: senha }
+            pathname: "./home", params: { nome: nome, senha: senha }
         });
     }
 
@@ -26,14 +25,6 @@ export default function Cadastro() {
             </View>
 
             <View className="flex p-5 gap-3" style={{paddingTop: 0}}>
-                <TextInput
-                    value={usuario}
-                    onChangeText={setUsuario}
-                    className="p-3 rounded-full shadow-md"
-                    placeholder="Usuário"
-                    placeholderTextColor={"#9CA3AF"}
-                />
-
                 <TextInput
                     value={nome}
                     onChangeText={setNome}

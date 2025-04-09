@@ -1,10 +1,11 @@
 import { router } from "expo-router";
 import { Text, View, TouchableOpacity, TextInput } from "react-native";
 import { useState } from "react";
+import { useLocalSearchParams } from "expo-router";
 
 export default function Index() {
 
-    const [usuario, setUsuario] = useState("");
+    const [nome, setNome] = useState("");
     const [senha, setSenha] = useState("");
 
     function entrarCadastro() {
@@ -12,11 +13,13 @@ export default function Index() {
     }
 
     function entrarHome() {
-        if (!usuario || !senha) {
+        if (!nome || !senha) {
             return;
         }
 
-        router.push("./home");
+        router.push({
+            pathname: "./home", params: { nome: nome }
+        });
     }
 
     return (
@@ -28,10 +31,10 @@ export default function Index() {
 
         <View className="flex p-5 gap-3" style={{ paddingTop: 0 }}>
             <TextInput
-                value={usuario}
-                onChangeText={setUsuario}
+                value={nome}
+                onChangeText={setNome}
                 className="p-3 rounded-full shadow-md"
-                placeholder="Usuário"
+                placeholder="Nome"
                 placeholderTextColor="#9CA3AF"
             />
             <TextInput
