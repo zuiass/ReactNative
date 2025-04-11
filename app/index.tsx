@@ -17,12 +17,10 @@ export default function App() {
     // R E T U R N
 
     return (
-        <View className="flex-1 p-5 bg-gray-900 gap-5">
+        <View className="flex-1 p-5 bg-gray-900 gap-5 box-border p-5">
 
-            <View
-            className="absolute top-5 left-5 z-50"
-            >
-            <Text className="text-white text-lg font-bold">kkkkk</Text>
+            <View className="absolute top-5 left-5 z-50 bg-red-700 w-[100%]">
+                <Text className="text-white text-lg font-bold">kkkkk</Text>
             </View>
 
 
