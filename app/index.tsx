@@ -2,7 +2,7 @@ import { router } from "expo-router";
 import { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, Image } from 'react-native';
 
-const slides = [
+let slides = [
     { cor: 'red', resposta: '1º andar' },
     { cor: 'blue', resposta: 'Corredor 2º andar' },
     { cor: 'green', resposta: 'Biblioteca' }
@@ -10,8 +10,9 @@ const slides = [
 
 // H T M L
 
-export default function App() {
+export default function Index() {
 
+    const [indiceAtual, setIndiceAtual] = useState(0);
     const [feedback, setFeedback] = useState("FFFFF");
 
     // R E T U R N
@@ -19,7 +20,7 @@ export default function App() {
     return (
         <View className="flex-1 max-h-[100%] bg-gray-900 box-border items-center">
 
-            <View className="flex absolute z-10 mt-7 w-52 items-center bg-red-700 p-4 rounded-2xl">
+            <View className="flex absolute z-10 mt-7 w-52 items-center bg-green-700 p-4 rounded-2xl">
                 <Text className="text-white text-lg font-bold">{feedback}</Text>
             </View>
 
