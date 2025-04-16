@@ -24,21 +24,45 @@ export default function Index() {
                 <Text className="text-white text-lg font-bold">{feedback}</Text>
             </View>
 
-            <View className="flex-1 p-5 box-border gap-5">
+            <View className="flex-1 w-full p-5 box-border justify-between gap-10">
                 <View className="flex-1 bg-slate-800 rounded-2xl">
                     {/* Entrada de imagens */}
                 </View>
 
-                <View className="w-full h-[50px] box-border justify-center">
-                    <TextInput
-                        className="flex-1 color-white bg-slate-800 rounded-full p-3 text-xl" style={{paddingRight: 50, paddingLeft: 20}}
-                        placeholder="Esse lugar parece ser..."
-                        placeholderTextColor={"#707070"}
-                    />
+                <View className="flex flex-col w-full h-[110px] box-border justify-between">
+                    <View className="flex flex-row justify-between">
+                        <TouchableOpacity className="w-10 h-10 flex p-3 rounded-md items-center justify-center bg-red-600">
+                            <Text className="text-xl font-semibold">-1</Text>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity className="absolute right-0 bg-violet-700 rounded-full p-2" style={{marginRight: 6}}>
-                        <Image source={require('./send.svg')} resizeMode="cover"/>
-                    </TouchableOpacity>
+                        <TouchableOpacity className="w-10 h-10 flex p-3 rounded-md items-center justify-center bg-yellow-500">
+                            <Text className="text-xl font-semibold">0º</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity className="w-10 h-10 flex p-3 rounded-md items-center justify-center bg-green-600">
+                            <Text className="text-xl font-semibold">1º</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity className="w-10 h-10 flex p-3 rounded-md items-center justify-center bg-green-500 rounded-full">
+                            <Text className="text-xl font-semibold">2º</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity className="w-10 h-10 flex p-3 rounded-md items-center justify-center bg-blue-500 rounded-full">
+                            <Text className="text-xl font-semibold">3º</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View className="flex items-center justify-center">
+                        <TextInput
+                            className="w-full h-[50px] text-white bg-slate-800 rounded-full p-3 text-xl" style={{paddingRight: 50, paddingLeft: 20}}
+                            placeholder="Esse lugar parece ser..."
+                            placeholderTextColor={"#707070"}
+                        />
+
+                        <TouchableOpacity className="absolute right-0 bg-violet-700 rounded-full p-2" style={{marginRight: 6}}>
+                            <Image source={require('./send.svg')} resizeMode="cover"/>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         
