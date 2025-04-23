@@ -4,12 +4,12 @@ import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 // L I S T
 
 const imagens = [
-    require('./IMG-1.jpg'),
-    require('./IMG-2.jpg'),
-    require('./IMG-3.jpg'),
-    require('./IMG-4.jpg'),
-    require('./IMG-5.jpg'),
-    require('./IMG-6.jpg')
+    require('../assets/IMG-1.jpg'),
+    require('../assets/IMG-2.jpg'),
+    require('../assets/IMG-3.jpg'),
+    require('../assets/IMG-4.jpg'),
+    require('../assets/IMG-5.jpg'),
+    require('../assets/IMG-6.jpg')
 ];
 
 const respostas = [
@@ -94,7 +94,7 @@ export default function Index() {
                     className="absolute right-0 bg-violet-600 rounded-full p-3 mr-2 top-[6px]"
                     onPress={verificarResposta}
                     >
-                        <Image source={require('./send.svg')} style={{ width: 24, height: 24 }} />
+                        <Image source={require('../assets/send.svg')} style={{ width: 24, height: 24 }} />
                     </TouchableOpacity>
                 </View>
             </View>
