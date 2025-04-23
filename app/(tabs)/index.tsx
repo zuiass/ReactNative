@@ -12,7 +12,7 @@ export default function Index() {
 
     return (
         <View className="flex-1 bg-gray-900 justify-center items-center">
-
+            <Text className='text-white'>Home</Text>
         </View>
     );
 
