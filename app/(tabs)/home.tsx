@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import {
+    View, Text, TouchableOpacity, Image, TextInput
+} from 'react-native';
 
 // S C R I P T S
 
-// *
+
 
 // H T M L
 
