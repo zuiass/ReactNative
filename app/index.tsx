@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 
+// L I S T S
+
 const imagens = [
     require('./IMG-1.jpg'),
     require('./IMG-2.jpg'),
     require('./IMG-3.jpg'),
     require('./IMG-4.jpg'),
     require('./IMG-5.jpg'),
-    require('./IMG-6.jpg'),
+    require('./IMG-6.jpg')
 ];
 
 const respostas = [
@@ -16,12 +18,17 @@ const respostas = [
     { andar: '1º andar', descricao: 'Entrada' },
     { andar: '2º andar', descricao: 'Mercado' },
     { andar: '3º andar', descricao: 'Microsoft' },
-    { andar: '2º andar', descricao: 'Loja de roupas' },
+    { andar: '2º andar', descricao: 'Loja de roupas' }
 ];
 
-const opcoes = ['-1º andar', '0º andar', '1º andar', '2º andar', '3º andar'];
+const opcoes = [
+    '-1º andar', '0º andar', '1º andar', '2º andar', '3º andar'
+];
+
+// H T M L
 
 export default function Index() {
+
     const [indiceAtual, setIndiceAtual] = useState(0);
     const [feedback, setFeedback] = useState("");
     const [descricao, setDescricao] = useState("");
@@ -50,7 +57,7 @@ export default function Index() {
         <View className="flex-1 max-h-[100%] bg-gray-900 items-center">
             {
             feedback !== "" && (
-            <View className="absolute z-10 mt-7 w-52 items-center bg-green-700 p-4 rounded-2xl">
+            <View className="absolute flex flex-row z-10 mt-7 w-56 items-center bg-yellow-500 p-4 rounded-2xl">
                 <Text className="text-white text-lg font-bold">{feedback}</Text>
             </View>
             )
@@ -61,19 +68,19 @@ export default function Index() {
                     <Image source={imagens[indiceAtual]} className="w-full h-full" resizeMode="cover" />
                 </View>
 
-                <View className="flex flex-wrap flex-row justify-between gap-2 mb-2">
+                <View className="flex flex-wrap flex-row justify-between gap-2">
                     {opcoes.map((opcao, index) => (
                     <TouchableOpacity
                     key={index}
                     className={`flex-1 p-3 rounded-xl items-center justify-center ${andarSelecionado === opcao ? 'bg-violet-500' : 'bg-violet-600'}`}
                     onPress={() => setAndarSelecionado(opcao)}
                     >
-                        <Text className="text-white font-bold text-lg">{opcao}</Text>
+                        <Text className="text-white text-lg">{opcao}</Text>
                     </TouchableOpacity>
                     ))}
                 </View>
 
-                <View className="w-full relative mb-4">
+                <View className="w-full relative">
                     <TextInput
                     value={descricao}
                     onChangeText={setDescricao}
@@ -93,4 +100,5 @@ export default function Index() {
             </View>
         </View>
     );
+
 }
