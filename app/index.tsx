@@ -1,79 +1,96 @@
-import { router } from "expo-router";
-import { useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, Image } from 'react-native';
+import { useState } from "react";
+import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 
-let slides = [
-    { cor: 'red', resposta: '1º andar' },
-    { cor: 'blue', resposta: 'Corredor 2º andar' },
-    { cor: 'green', resposta: 'Biblioteca' }
+const imagens = [
+    require('./IMG-1.jpg'),
+    require('./IMG-2.jpg'),
+    require('./IMG-3.jpg'),
+    require('./IMG-4.jpg'),
+    require('./IMG-5.jpg'),
+    require('./IMG-6.jpg'),
 ];
 
-// H T M L
+const respostas = [
+    { andar: '0º andar', descricao: 'Pátio' },
+    { andar: '0º andar', descricao: 'Corredor' },
+    { andar: '1º andar', descricao: 'Entrada' },
+    { andar: '2º andar', descricao: 'Mercado' },
+    { andar: '3º andar', descricao: 'Microsoft' },
+    { andar: '2º andar', descricao: 'Loja de roupas' },
+];
+
+const opcoes = ['-1º andar', '0º andar', '1º andar', '2º andar', '3º andar'];
 
 export default function Index() {
-
     const [indiceAtual, setIndiceAtual] = useState(0);
-    const [feedback, setFeedback] = useState("FFFFF");
+    const [feedback, setFeedback] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [andarSelecionado, setAndarSelecionado] = useState("");
 
-    // R E T U R N
+    function verificarResposta() {
+        const respostaCerta = respostas[indiceAtual];
+        const andarOK = andarSelecionado === respostaCerta.andar;
+        const descricaoOK = descricao.trim().toLowerCase() === respostaCerta.descricao.trim().toLowerCase();
+
+        if (andarOK && descricaoOK) {
+            setFeedback("✅ Resposta correta!");
+            setTimeout(() => {
+                setIndiceAtual((prev) => (prev + 1) % imagens.length);
+                setFeedback("");
+                setDescricao("");
+                setAndarSelecionado("");
+            }, 2000);
+        } else {
+            setFeedback("❌ Resposta errada...");
+            setTimeout(() => setFeedback(""), 1500);
+        }
+    }
 
     return (
-        <View className="flex-1 max-h-[100%] bg-gray-900 box-border items-center">
-
-            <View className="flex absolute z-10 mt-7 w-52 items-center bg-green-700 p-4 rounded-2xl">
+        <View className="flex-1 max-h-[100%] bg-gray-900 items-center">
+            {
+            feedback !== "" && (
+            <View className="absolute z-10 mt-7 w-52 items-center bg-green-700 p-4 rounded-2xl">
                 <Text className="text-white text-lg font-bold">{feedback}</Text>
             </View>
+            )
+            }
 
-            <View className="flex-1 w-full p-5 box-border justify-between gap-10">
-                <View className="flex-1 bg-slate-800 rounded-2xl">
-                    {/* Entrada de imagens */}
+            <View className="flex-1 w-full p-5 justify-between gap-10">
+                <View className="flex-1 bg-slate-800 rounded-2xl overflow-hidden items-center justify-center">
+                    <Image source={imagens[indiceAtual]} className="w-full h-full" resizeMode="cover" />
                 </View>
 
-                <View className="flex flex-col w-full h-[110px] box-border justify-between">
-                    <View className="flex flex-row justify-between">
-                        <TouchableOpacity className="w-10 h-10 flex p-3 rounded-md items-center justify-center bg-red-600">
-                            <Text className="text-xl font-semibold">-1</Text>
-                        </TouchableOpacity>
+                <View className="flex flex-wrap flex-row justify-between gap-2 mb-2">
+                    {opcoes.map((opcao, index) => (
+                    <TouchableOpacity
+                    key={index}
+                    className={`flex-1 p-3 rounded-xl items-center justify-center ${andarSelecionado === opcao ? 'bg-violet-500' : 'bg-violet-600'}`}
+                    onPress={() => setAndarSelecionado(opcao)}
+                    >
+                        <Text className="text-white font-bold text-lg">{opcao}</Text>
+                    </TouchableOpacity>
+                    ))}
+                </View>
 
-                        <TouchableOpacity className="w-10 h-10 flex p-3 rounded-md items-center justify-center bg-yellow-500">
-                            <Text className="text-xl font-semibold">0º</Text>
-                        </TouchableOpacity>
+                <View className="w-full relative mb-4">
+                    <TextInput
+                    value={descricao}
+                    onChangeText={setDescricao}
+                    className="w-full h-[60px] text-white bg-slate-800 rounded-full p-4 text-lg"
+                    placeholder="Escreva uma descrição..."
+                    placeholderTextColor="#707070"
+                    style={{ paddingRight: 60, paddingLeft: 20 }}
+                    />
 
-                        <TouchableOpacity className="w-10 h-10 flex p-3 rounded-md items-center justify-center bg-green-600">
-                            <Text className="text-xl font-semibold">1º</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity className="w-10 h-10 flex p-3 rounded-md items-center justify-center bg-green-500 rounded-full">
-                            <Text className="text-xl font-semibold">2º</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity className="w-10 h-10 flex p-3 rounded-md items-center justify-center bg-blue-500 rounded-full">
-                            <Text className="text-xl font-semibold">3º</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    <View className="flex items-center justify-center">
-                        <TextInput
-                            className="w-full h-[50px] text-white bg-slate-800 rounded-full p-3 text-xl" style={{paddingRight: 50, paddingLeft: 20}}
-                            placeholder="Esse lugar parece ser..."
-                            placeholderTextColor={"#707070"}
-                        />
-
-                        <TouchableOpacity className="absolute right-0 bg-violet-700 rounded-full p-2" style={{marginRight: 6}}>
-                            <Image source={require('./send.svg')} resizeMode="cover"/>
-                        </TouchableOpacity>
-                    </View>
+                    <TouchableOpacity
+                    className="absolute right-0 bg-violet-600 rounded-full p-3 mr-2 top-[6px]"
+                    onPress={verificarResposta}
+                    >
+                        <Image source={require('./send.svg')} style={{ width: 24, height: 24 }} />
+                    </TouchableOpacity>
                 </View>
             </View>
-        
         </View>
     );
 }
-
-// S T Y L E S
-
-const styles = StyleSheet.create({
-    container: {
-
-    }
-});
