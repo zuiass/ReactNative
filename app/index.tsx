@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 
-// L I S T S
+// L I S T
 
 const imagens = [
     require('./IMG-1.jpg'),
